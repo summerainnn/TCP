@@ -14,7 +14,6 @@ public class Client {
         System.out.println("计算机网络实验10");
         Scanner input=new Scanner(System.in);
         String[] namelist;
-
         OutputStream outputStream ;
         byte[] bytes = new byte[1024];
         FileInputStream[] finlist;
@@ -22,7 +21,7 @@ public class Client {
             System.out.println("请输入1上传文件，输入2下载文件，输入0退出系统:");
             int content=input.nextInt();
             if(content == 1){
-                Socket socket = new Socket("127.0.0.1", 8888);
+                Socket socket = new Socket("47.112.183.137", 8888);
                 outputStream = socket.getOutputStream();
                 // 第一次上传
                 outputStream.write("1".getBytes());
@@ -58,7 +57,7 @@ public class Client {
                 System.out.println(filename+"上传成功");
             }
             if(content == 2){
-                Socket socket = new Socket("127.0.0.1", 8888);
+                Socket socket = new Socket("47.112.183.137", 8888);
                 System.out.println("可下载的文件为：");
                 outputStream = socket.getOutputStream();
                 outputStream.write("2".getBytes());
@@ -79,7 +78,7 @@ public class Client {
                 socket.shutdownOutput();
             }
             if(content == 0){
-                Socket socket = new Socket("127.0.0.1", 8888);
+                Socket socket = new Socket("47.112.183.137", 8888);
                 outputStream = socket.getOutputStream();
                 outputStream.write("0".getBytes());
                 break;

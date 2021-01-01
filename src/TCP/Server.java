@@ -6,11 +6,19 @@ import java.net.Socket;
 import java.util.Arrays;
 
 /**
- * @author £ºsummerain
- * @date £ºCreated in 2020/12/29 8:05 ÏÂÎç
+ * @author summerain
+ * @date Created in 2020/12/29 8:05
  */
 public class Server {
     public static void main(String[] args)throws Exception {
+
+//        new Thread().start(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//            }
+//        });
+
         ServerSocket server = new ServerSocket(8888);
         byte[] bytes = new byte[1024];
         while (true) {
@@ -21,6 +29,14 @@ public class Server {
             if("1".equals(string)){
                 len = inputStream.read(bytes);
                 String fileName = new String(bytes,0,len);
+                File file = new File("Server/" + fileName);
+                if (!file.exists()){
+                    try {
+                        file.createNewFile();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
                 FileOutputStream fileOutputStream = new FileOutputStream("Server/" + fileName);
                 while ((len = inputStream.read(bytes))!=-1){
                     fileOutputStream.write(bytes);
